@@ -157,7 +157,7 @@ runs:
         fi
         docker run \
           --rm \
-          --entrypoint /bin/bash \
+          --entrypoint /bin/sh \
           ${{ inputs.inline_environment }} \
           --env-file /tmp/docker_env.txt \
           ${{ inputs.container_args }} \
