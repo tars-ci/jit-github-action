@@ -156,8 +156,8 @@ runs:
           echo SECURITY_CONTROL_OUTPUT_FILE=${{ inputs.security_control_output_file }} >> /tmp/docker_env.txt
         fi
         docker run \
-          --name hui \
           --rm \
+          --name hui \
           ${{ inputs.inline_environment }} \
           --env-file /tmp/docker_env.txt \
           ${{ inputs.container_args }} \
