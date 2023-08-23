@@ -146,11 +146,8 @@ runs:
       if: always()
       run: |
         B64_ENCODED_GITHUB_EVENT=$(echo $GH_EVENT_JSON | base64)
-        B64_ENCODED_GITHUB_EVENT=$(echo $TARS_EVENT | base64)
         echo "Encoded GITHUB EVENT with base64"
         echo CONFIG_FILE_PATH=${CONFIG_FILE_PATH} > /tmp/docker_env.txt
-        echo TARS_EVENT=${TARS_EVENT} >>/tmp/docker_env.txt
-        echo TARS_EVENT2=${TARS_EVENT2} >> /tmp/docker_env.txt
         echo GITHUB_EVENT=$B64_ENCODED_GITHUB_EVENT >> /tmp/docker_env.txt
         echo SOURCE_CODE_FOLDER=/code >> /tmp/docker_env.txt
         echo FAIL_ON_FINDINGS=${{ inputs.fail_on_findings }} >> /tmp/docker_env.txt
